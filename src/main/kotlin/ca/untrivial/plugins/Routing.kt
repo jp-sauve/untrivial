@@ -1,5 +1,6 @@
 package ca.untrivial.plugins
 
+import ca.untrivial.routes.articleRouting
 import ca.untrivial.routes.userRouting
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
@@ -10,5 +11,6 @@ fun Application.configureRouting() {
     routing {
         staticResources("/static", "files")
         userRouting()
+        articleRouting()
     }
 }
