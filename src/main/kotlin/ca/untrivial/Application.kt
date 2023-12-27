@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    DatabaseSingleton.init()
+    DatabaseSingleton.init(environment.config)
     configureSerialization()
     configureRouting()
     configureTemplating()
