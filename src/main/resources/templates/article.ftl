@@ -5,7 +5,8 @@
     <h3>Article</h3>
     <div id="article">
         <div id="title">
-        <h3>${article.title}</h3?
+        <h3>${article.title}</h3>
+        <span>[<a href="/article/${article.id}/edit">Edit</a>]</span>
         </div>
         <div id="body">
         <p>${article.body}</p>
