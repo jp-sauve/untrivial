@@ -4,7 +4,7 @@
     <#list articles?reverse as article>
         <div>
             <h3>
-                <a href="/articles/${article.id}">${article.title}</a>
+                <a href="/article/${article.id}">${article.title}</a>
             </h3>
             <p>
                 ${article.body}
@@ -13,6 +13,6 @@
     </#list>
     <hr>
     <p>
-        <a href="/articles/new">Create article</a>
+        <a href="/article/new">Create article</a>
     </p>
 </@layout.header>
