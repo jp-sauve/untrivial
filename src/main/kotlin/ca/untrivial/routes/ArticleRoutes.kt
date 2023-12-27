@@ -43,16 +43,25 @@ fun Route.articleRouting() {
             val article = articles.find { it.id == id }
             call.respond(FreeMarkerContent("edit.ftl", model = mapOf("article" to article)))
         }
-        post("{id}/edit") {
+        post("{id}") {
             // update article
             val id = call.parameters.getOrFail<Int>("id").toInt()
             val article = articles.find { it.id == id }
             val formParameters = call.receiveParameters()
-            val title = formParameters.getOrFail("title")
-            val body = formParameters.getOrFail("body")
-            articles[id].title = title
-            articles[id].body = body
-            call.respondRedirect("/article/${id}")
+            when (formParameters.getOrFail("_action")) {
+                "update" -> {
+                    val title = formParameters.getOrFail("title")
+                    val body = formParameters.getOrFail("body")
+                    articles[id].title = title
+                    articles[id].body = body
+                    call.respondRedirect("/article/${id}")
+                }
+                "delete" -> {
+                    articles.removeIf { it.id == id }
+                    call.respondRedirect("/article")
+                }
+            }
+
         }
     }
 }
