@@ -44,10 +44,3 @@ class DAOFacadeImpl : DAOFacade {
         } > 0
     }
 }
-val dao: DAOFacade = DAOFacadeImpl().apply {
-    runBlocking {
-        if(allArticles().isEmpty()) {
-            addNewArticle("First Post!", "Suckers always going to be #2")
-        }
-    }
-}

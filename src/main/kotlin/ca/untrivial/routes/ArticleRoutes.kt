@@ -1,6 +1,6 @@
 package ca.untrivial.routes
 
-import ca.untrivial.dao.dao
+import ca.untrivial.dao.DAOFacade
 import ca.untrivial.models.Article
 import ca.untrivial.models.Articles
 import io.ktor.server.routing.*
@@ -11,7 +11,7 @@ import io.ktor.http.*
 import io.ktor.server.freemarker.*
 import io.ktor.server.util.*
 
-fun Route.articleRouting() {
+fun Route.articleRouting(dao: DAOFacade) {
     route("/article") {
         get {
             // show all articles

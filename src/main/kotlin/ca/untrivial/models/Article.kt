@@ -1,8 +1,8 @@
 package ca.untrivial.models
-
+import java.io.Serializable
 import org.jetbrains.exposed.sql.*
 
-data class Article(val id: Int, val title: String, val body: String)
+data class Article(val id: Int, val title: String, val body: String): Serializable
 
 object Articles : Table() {
     val id = integer("id").autoIncrement()
