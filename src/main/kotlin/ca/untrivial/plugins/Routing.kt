@@ -4,12 +4,14 @@ import ca.untrivial.dao.DAOFacade
 import ca.untrivial.dao.DAOFacadeCacheImpl
 import ca.untrivial.dao.DAOFacadeImpl
 import ca.untrivial.routes.articleRouting
+import ca.untrivial.routes.gameRouting
 import ca.untrivial.routes.userRouting
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.File
 
 fun Application.configureRouting() {
@@ -27,5 +29,6 @@ fun Application.configureRouting() {
         staticResources("/static", "files")
         userRouting()
         articleRouting(dao)
+        gameRouting()
     }
 }

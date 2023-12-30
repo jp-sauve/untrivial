@@ -3,6 +3,7 @@ package ca.untrivial.dao
 import ca.untrivial.dao.DatabaseSingleton.dbQuery
 import ca.untrivial.models.*
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.exposed.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
@@ -17,10 +18,12 @@ class DAOFacadeImpl : DAOFacade {
     }
 
     override suspend fun article(id: Int): Article?  = dbQuery {
+
         Articles
             .select { Articles.id eq id }
             .map(::resultRowToArticle)
             .singleOrNull()
+
     }
 
     override suspend fun addNewArticle(title: String, body: String): Article? = dbQuery {
