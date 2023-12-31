@@ -9,5 +9,7 @@ import java.util.*
 class GameService(private val gameRepo: GameRepository) {
     suspend fun getAllGames(): List<GameDTO> = gameRepo.allGames()
 
+    suspend fun getGame(id: String): GameDTO? = gameRepo.game(UUID.fromString(id))
+
     suspend fun addNewGame(name: String, variant: String): UUID = gameRepo.add(name, variant)
 }

@@ -22,14 +22,21 @@ class GameRepository {
         }
     }
 
+//    suspend fun game(id: UUID): GameDTO? = dbQuery {
+//        Games.select { Games.id eq id }.map {
+//            GameDTO(
+//                id = it[Games.id].toString(), name = it[Games.name], variant = it[Games.variant]
+//            )
+//        }.singleOrNull()
+//    }
+
     suspend fun game(id: UUID): GameDTO? = dbQuery {
-        Games.select { Games.id eq id }.map {
+        Games.select { Games.id eq id }.singleOrNull()?.let {
             GameDTO(
                 id = it[Games.id].toString(), name = it[Games.name], variant = it[Games.variant]
             )
-        }.firstOrNull()
+        }
     }
-
     suspend fun add(name: String, variant: String): UUID = dbQuery {
         val gameId = Games.insertAndGetId {
             it[Games.name] = name

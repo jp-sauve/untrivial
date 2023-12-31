@@ -6,6 +6,7 @@
             <h3>
                 <a href="/game/${game.id}">${game.name}</a>
             </h3>
+            <h5>${game.id}</h5>
             <p>
                 ${game.variant}
             </p>
