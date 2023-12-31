@@ -1,5 +1,6 @@
 package ca.untrivial.dao
 
+import ca.untrivial.features.games.domain.Games
 import ca.untrivial.models.*
 import java.io.*
 import io.ktor.server.config.*
@@ -31,6 +32,7 @@ object DatabaseSingleton {
 
         transaction(database) {
             SchemaUtils.create(Articles)
+            SchemaUtils.create(Games)
         }
     }
     suspend fun <T> dbQuery(block: suspend () -> T): T =

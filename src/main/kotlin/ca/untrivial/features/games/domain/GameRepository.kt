@@ -1,8 +1,10 @@
 package ca.untrivial.features.games.domain
 
 import ca.untrivial.dao.DatabaseSingleton.dbQuery
+import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.UUIDTable
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import java.util.*
 
 
@@ -27,11 +29,27 @@ class GameRepository {
             )
         }.firstOrNull()
     }
-    suspend fun add(dto: GameDTO): UUID = dbQuery {
+
+    suspend fun add(name: String, variant: String): UUID = dbQuery {
         val gameId = Games.insertAndGetId {
-            it[Games.name] = dto.name
-            it[Games.variant] = dto.variant
+            it[Games.name] = name
+            it[Games.variant] = variant
         }
         gameId.value
+    }
+
+    suspend fun edit(dto: GameDTO): Boolean = dbQuery {
+        val updatedRows = Games.update({Games.id eq UUID.fromString(dto.id)}) {
+            it[Games.name] = name
+            it[Games.variant] = variant
+        }
+        updatedRows > 0
+    }
+    suspend fun delete(id: String) = dbQuery {
+        val updatedRows = Games.deleteWhere {
+            this.id eq UUID.fromString(id)
+        }
+        updatedRows
+
     }
 }
