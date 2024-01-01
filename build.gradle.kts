@@ -42,6 +42,7 @@ dependencies {
     implementation("com.zaxxer:HikariCP:$hikaricpVersion")
     implementation("org.ehcache:ehcache:$ehcacheVersion")
     // Koin for Ktor
+    implementation("io.insert-koin:koin-core:$koinKtorVersion")
     implementation("io.insert-koin:koin-ktor:$koinKtorVersion")
     // SLF4J Logger
     implementation("io.insert-koin:koin-logger-slf4j:$koinKtorVersion")
