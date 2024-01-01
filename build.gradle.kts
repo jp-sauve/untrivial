@@ -6,7 +6,7 @@ val exposedVersion: String by project
 val h2Version: String by project
 val hikaricpVersion: String by project
 val ehcacheVersion: String by project
-
+val koinKtorVersion: String by project
 plugins {
     kotlin("jvm") version "1.9.22"
     id("io.ktor.plugin") version "2.3.7"
@@ -41,6 +41,10 @@ dependencies {
     implementation("com.h2database:h2:$h2Version")
     implementation("com.zaxxer:HikariCP:$hikaricpVersion")
     implementation("org.ehcache:ehcache:$ehcacheVersion")
+    // Koin for Ktor
+    implementation("io.insert-koin:koin-ktor:$koinKtorVersion")
+    // SLF4J Logger
+    implementation("io.insert-koin:koin-logger-slf4j:$koinKtorVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
