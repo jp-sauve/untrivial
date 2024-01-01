@@ -25,9 +25,7 @@ fun Route.articleRouting(dao: DAOFacade) {
             // save an article
             val formParameters = call.receiveParameters()
             val title = formParameters.getOrFail("title")
-            println("title: $title")
             val body = formParameters.getOrFail("body")
-            println("body: $body")
             val newEntry = dao.addNewArticle(title, body)
             call.respondRedirect("/article/${newEntry?.id}")
         }

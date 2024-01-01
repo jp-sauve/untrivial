@@ -52,11 +52,11 @@ class GameRepository {
         }
         updatedRows > 0
     }
-    suspend fun delete(id: String) = dbQuery {
+    suspend fun delete(id: UUID):Boolean = dbQuery {
         val updatedRows = Games.deleteWhere {
-            this.id eq UUID.fromString(id)
+            this.id eq id
         }
-        updatedRows
+        updatedRows > 0
 
     }
 }

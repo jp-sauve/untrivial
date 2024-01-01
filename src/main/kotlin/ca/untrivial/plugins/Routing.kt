@@ -28,6 +28,7 @@ fun Application.configureRouting() {
         runBlocking {
             if (allArticles().isEmpty()) {
                 addNewArticle("First Post!", "Sucker. You will always be first loser to me.")
+                addNewArticle("Second Post!", "Sucker. You will always be second loser to me.")
             }
 
         }
@@ -38,6 +39,10 @@ fun Application.configureRouting() {
             runBlocking {
                 if (getAllGames().isEmpty()) {
                     addNewGame("Otter brand Trivia", "Tummy snacks edition")
+                    addNewGame("Beaver brand Trivia", "Wood snacks edition")
+                    addNewGame("Goat brand Trivia", "Any snacks edition")
+                    addNewGame("Dragon brand Trivia", "Gold snacks edition")
+                    addNewGame("Fish brand Trivia", "Wet snacks edition")
                 }
             }
         }

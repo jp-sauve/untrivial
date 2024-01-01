@@ -1,6 +1,7 @@
 package ca.untrivial.routes
 
 import ca.untrivial.features.games.GameService
+import io.ktor.http.*
 import io.ktor.server.freemarker.*
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
@@ -16,9 +17,17 @@ fun Route.gameRouting(gameService: GameService) {
 
         get("{id}") {
             val id = call.parameters.getOrFail<String>("id")
-            println("FOUND ID: " + id)
             val game = gameService.getGame(id)
             call.respond(FreeMarkerContent("game.ftl", model = mapOf("game" to game)))
+        }
+        get("delete/{id}") {
+            val id = call.parameters.getOrFail<String>("id")
+            val doneDeal = gameService.deleteGame(id)
+            if (doneDeal) {
+                call.respondRedirect("/game")
+            } else {
+                call.respondText(text = "Nothing to delete for {id}", status = HttpStatusCode.NotFound)
+            }
         }
     }
 }

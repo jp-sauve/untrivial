@@ -12,4 +12,6 @@ class GameService(private val gameRepo: GameRepository) {
     suspend fun getGame(id: String): GameDTO? = gameRepo.game(UUID.fromString(id))
 
     suspend fun addNewGame(name: String, variant: String): UUID = gameRepo.add(name, variant)
+
+    suspend fun deleteGame(id: String): Boolean = gameRepo.delete(UUID.fromString(id))
 }
