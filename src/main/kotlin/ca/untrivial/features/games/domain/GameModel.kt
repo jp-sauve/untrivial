@@ -1,10 +1,12 @@
 package ca.untrivial.features.games.domain
 import org.jetbrains.exposed.dao.id.UUIDTable
-import java.io.Serializable
 import java.util.*
+import kotlinx.serialization.Serializable
 
-data class Game(val id: UUID, val name: String, val variant: String): Serializable
 
+data class Game(val id: UUID, val name: String, val variant: String)
+
+@Serializable
 data class GameDTO(val id: String, val name: String, val variant: String)
 
 fun Game.toDTO(): GameDTO {

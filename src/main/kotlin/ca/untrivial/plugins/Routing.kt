@@ -6,6 +6,7 @@ import ca.untrivial.dao.DAOFacadeImpl
 
 import ca.untrivial.features.games.GameService
 import ca.untrivial.features.games.domain.GameRepository
+import ca.untrivial.routes.api.gameApiRouting
 import ca.untrivial.routes.articleRouting
 import ca.untrivial.routes.gameRouting
 import ca.untrivial.routes.userRouting
@@ -45,5 +46,6 @@ fun Application.configureRouting() {
         userRouting()
         articleRouting(dao)
         gameRouting(gameService)
+        gameApiRouting(gameService)
     }
 }
