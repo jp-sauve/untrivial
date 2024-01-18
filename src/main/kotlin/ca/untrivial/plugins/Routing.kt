@@ -30,7 +30,6 @@ fun Application.configureRouting() {
                 addNewArticle("First Post!", "Sucker. You will always be first loser to me.")
                 addNewArticle("Second Post!", "Sucker. You will always be second loser to me.")
             }
-
         }
     }
     val gameRepository = GameRepository()
