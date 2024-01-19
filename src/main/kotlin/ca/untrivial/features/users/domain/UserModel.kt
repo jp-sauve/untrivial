@@ -6,8 +6,8 @@ import java.util.*
 data class User(val username: String, val password: String, val email: String)
 
 @Serializable
-data class UserDTO(val username: String, val password: String, val email: String)
+data class UserDTO(val username: String, val email: String)
 
-fun User.toDTO(): UserDTO = UserDTO(username, password, email)
+fun User.toDTO(): UserDTO = UserDTO(username, email)
 
-fun UserDTO.toModel(): User = User(username, password, email)
+fun UserDTO.toModel(pw: String): User = User(username, pw, email)
