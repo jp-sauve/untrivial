@@ -47,6 +47,9 @@ dependencies {
     // SLF4J Logger
     implementation("io.insert-koin:koin-logger-slf4j:$koinKtorVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    // Password hashing
+    implementation("org.mindrot:jbcrypt:0.4")
+
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
 }
