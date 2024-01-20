@@ -40,8 +40,8 @@ fun Application.configureRouting() {
                     addNewGame("Otter brand Trivia", "Tummy snacks edition")
                     addNewGame("Beaver brand Trivia", "Wood snacks edition")
                     addNewGame("Goat brand Trivia", "Any snacks edition")
-                    addNewGame("Dragon brand Trivia", "Gold snacks edition")
-                    addNewGame("Fish brand Trivia", "Wet snacks edition")
+                    addNewGame("Cow brand Trivia", "Gold snacks edition")
+                    addNewGame("Dog brand Trivia", "Wet snacks edition")
                 }
             }
         }
