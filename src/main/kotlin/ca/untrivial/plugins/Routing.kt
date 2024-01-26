@@ -6,6 +6,8 @@ import ca.untrivial.dao.DAOFacadeImpl
 
 import ca.untrivial.features.games.GameService
 import ca.untrivial.features.games.domain.GameRepository
+import ca.untrivial.features.users.domain.UserRepository
+import ca.untrivial.features.users.domain.UserService
 import ca.untrivial.routes.api.gameApiRouting
 import ca.untrivial.routes.articleRouting
 import ca.untrivial.routes.gameRouting
@@ -34,6 +36,7 @@ fun Application.configureRouting() {
     }
     val gameRepository = GameRepository()
     val gameService = GameService(gameRepository)
+
         .apply {
             runBlocking {
                 if (getAllGames().isEmpty()) {
@@ -45,9 +48,11 @@ fun Application.configureRouting() {
                 }
             }
         }
+    val userRepo = UserRepository()
+    val userService = UserService(userRepo)
     routing {
         staticResources("/static", "files")
-        userRouting()
+        userRouting(userService)
         articleRouting(dao)
         gameRouting(gameService)
         gameApiRouting(gameService)

@@ -9,4 +9,5 @@ class UserService(private val userRepo: UserRepository) {
         return userRepo.add(username, password, email)
     }
     suspend fun deleteUser(id: Int): Boolean = userRepo.delete(id)
+
 }
