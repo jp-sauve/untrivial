@@ -2,8 +2,8 @@ package ca.untrivial.routes
 
 import ca.untrivial.features.users.domain.UserDTO
 import ca.untrivial.features.users.domain.UserService
-import ca.untrivial.models.User
-import ca.untrivial.models.userStorage
+import ca.untrivial.features.users.domain.User
+import ca.untrivial.features.users.domain.toDTO
 import io.ktor.http.*
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
@@ -33,9 +33,9 @@ fun Route.userRouting(userService: UserService) {
         }
         post {
             val user = call.receive<User>()
-            userStorage.add(user)
-            println(user.firstName)
-            call.respondText("New user stored", status = HttpStatusCode.Created)
+            userService.addUser(user.username, user.email, user.password)
+            //call.respondText("New user stored", status = HttpStatusCode.Created)
+            call.respond<UserDTO>(user.toDTO())
         }
         delete("{id?}") {
             val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
