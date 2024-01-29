@@ -3,11 +3,11 @@ package ca.untrivial.features.users.domain
 import kotlinx.serialization.Serializable
 import java.util.*
 @Serializable
-data class User(val username: String, val email: String, val password: String)
+data class User(val username: String, val email: String, val password: String, val displayName: String?)
 
+//TODO: figure out how to make displayName optional
+data class UserDTO(val username: String, val email: String, val displayName: String?)
 
-data class UserDTO(val username: String, val email: String)
+fun User.toDTO(): UserDTO = UserDTO(username, email, displayName)
 
-fun User.toDTO(): UserDTO = UserDTO(username, email)
-
-fun UserDTO.toModel(pw: String): User = User(username, email, pw)
+fun UserDTO.toModel(pw: String): User = User(username, email, pw, displayName)

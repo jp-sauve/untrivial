@@ -37,6 +37,7 @@ fun Route.userRouting(userService: UserService) {
             //call.respondText("New user stored", status = HttpStatusCode.Created)
             call.respond<UserDTO>(user.toDTO())
         }
+        // TODO: add another post for id to update user
         delete("{id?}") {
             val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
             if (userService.deleteUser(id.toInt())) {

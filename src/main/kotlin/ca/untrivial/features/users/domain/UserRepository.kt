@@ -11,6 +11,7 @@ object Users: IntIdTable() {
     val username: Column<String> = varchar("username", 50).uniqueIndex()
     val password = varchar("password", 64)
     val email = varchar("email", 320).uniqueIndex()
+    val displayName = varchar("displayName", 128)
 }
 class UserRepository {
     suspend fun allUsers(): List<UserDTO> = dbQuery {
