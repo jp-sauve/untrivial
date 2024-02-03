@@ -7,12 +7,18 @@ import ca.untrivial.features.users.domain.toDTO
 import io.ktor.http.*
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 
 fun Route.userRouting(userService: UserService) {
     val truth: Boolean = true
     route("/user") {
+        install(CORS) {
+            anyHost()
+            allowHost("0.0.0.0:8080")
+            allowHeader(HttpHeaders.ContentType)
+        }
         get {
             if (truth) {
                 call.respond(userService.getAllUsers())

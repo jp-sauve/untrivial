@@ -16,12 +16,20 @@ object Users: IntIdTable() {
 class UserRepository {
     suspend fun allUsers(): List<UserDTO> = dbQuery {
         Users.selectAll().map {
-            UserDTO(username = it[Users.username], email = it[Users.email])
+            UserDTO(
+                username = it[Users.username],
+                email = it[Users.email],
+                displayName = it[Users.displayName]
+            )
         }
     }
     suspend fun user(id: Int): UserDTO? = dbQuery {
         Users.select { Users.id eq id }.singleOrNull()?.let {
-            UserDTO(username = it[Users.username], email = it[Users.email])
+            UserDTO(
+                username = it[Users.username],
+                email = it[Users.email],
+                displayName = it[Users.displayName]
+            )
         }
     }
     suspend fun add(username: String, password: String, email: String): Int = dbQuery {

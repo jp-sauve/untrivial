@@ -3,7 +3,7 @@ import org.jetbrains.exposed.dao.id.UUIDTable
 import java.util.*
 import kotlinx.serialization.Serializable
 
-
+@Serializable
 data class Game(val id: UUID, val name: String, val variant: String)
 
 @Serializable
