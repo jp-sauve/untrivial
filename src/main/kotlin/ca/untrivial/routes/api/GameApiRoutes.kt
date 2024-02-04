@@ -4,6 +4,7 @@ import ca.untrivial.features.games.GameService
 import ca.untrivial.features.games.domain.Game
 import ca.untrivial.features.games.domain.GameDTO
 import ca.untrivial.features.games.domain.toDTO
+import ca.untrivial.features.games.domain.toModel
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.cors.routing.*
@@ -25,7 +26,8 @@ fun Route.gameApiRouting(gameService: GameService) {
             post {
                 val game = call.receive<Game>()
                 val gameUUID = gameService.addNewGame(game.name, game.variant);
-                call.respond<GameDTO>(game.toDTO())
+                val dto = gameService.getGame(gameUUID.toString())
+                call.respond(dto)
             }
         }
     }

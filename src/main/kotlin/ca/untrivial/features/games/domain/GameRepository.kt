@@ -5,6 +5,7 @@ import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.UUIDTable
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.Table.Dual.entityId
 import java.util.*
 
 
@@ -37,12 +38,14 @@ class GameRepository {
             )
         }
     }
-    suspend fun add(name: String, variant: String): UUID = dbQuery {
-        val gameId = Games.insertAndGetId {
+    suspend fun add(name: String, variant: String): Game = dbQuery {
+        var gameId: UUID
+        Games.insertAndGetId {
+            gameId = this.id
             it[Games.name] = name
             it[Games.variant] = variant
         }
-        gameId.value
+        Game(id = gameId,name,variant)
     }
 
     suspend fun edit(dto: GameDTO): Boolean = dbQuery {
